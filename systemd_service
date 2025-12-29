@@ -1,0 +1,32 @@
+#   script da creare in 
+   /etc/systemd/system/seplos_bms.service
+
+[Unit]
+Description=SEPLOS BMS MQTT publisher
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi               # <-- cambia con l'utente corretto (es. pi, root, etc.)
+WorkingDirectory=/home/pi/SEPLOS_MQTT
+ExecStart=/home/pi/SEPLOS_MQTT/run_bms_query.sh
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/pi/SEPLOS_MQTT/nohup.out
+StandardError=append:/home/pi/SEPLOS_MQTT/nohup.out
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+#lo script sia eseguibile:
+
+chmod +x /home/pi/SEPLOS_MQTT/run_bms_query.sh
+
+#abilita e riavvia
+sudo systemctl daemon-reload
+sudo systemctl enable seplos_bms.service
+sudo systemctl start seplos_bms.service
+sudo systemctl status seplos_bms.service
