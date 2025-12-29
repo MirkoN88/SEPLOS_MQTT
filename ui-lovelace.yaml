@@ -1,0 +1,131 @@
+title: SEPLOS BMS
+views:
+  - title: Battery
+    path: seplos_bms
+    icon: mdi:battery
+    cards:
+
+      - type: entities
+        title: Stato Generale
+        entities:
+          - entity: sensor.seplos2_364715398511_soc
+            name: State of Charge
+          - entity: sensor.seplos2_364715398511_soh
+            name: State of Health
+          - entity: sensor.seplos2_364715398511_cycles
+            name: Charge Cycles
+          - entity: sensor.seplos2_364715398511_total_voltage
+            name: Total Voltage
+          - entity: sensor.seplos2_364715398511_charge_discharge
+            name: Charge/Discharge Current
+          - entity: sensor.seplos2_364715398511_residual_capacity
+            name: Residual Capacity
+          - entity: sensor.seplos2_364715398511_port_voltage
+            name: Port Voltage
+
+      - type: entities
+        title: Temperature
+        entities:
+          - sensor.seplos2_364715398511_cell_temp1
+          - sensor.seplos2_364715398511_cell_temp2
+          - sensor.seplos2_364715398511_cell_temp3
+          - sensor.seplos2_364715398511_cell_temp4
+          - sensor.seplos2_364715398511_env_temp
+          - sensor.seplos2_364715398511_power_temp
+
+      - type: entities
+        title: Celle - Min/Max
+        entities:
+          - sensor.seplos2_364715398511_lowest_cell
+          - sensor.seplos2_364715398511_lowest_cell_v
+          - sensor.seplos2_364715398511_lowest_cell_n
+          - sensor.seplos2_364715398511_highest_cell
+          - sensor.seplos2_364715398511_highest_cell_v
+          - sensor.seplos2_364715398511_highest_cell_n
+          - sensor.seplos2_364715398511_difference
+
+      - type: grid
+        title: Celle (1–16)
+        columns: 4
+        square: false
+        cards:
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell01
+            name: Cell 01
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell02
+            name: Cell 02
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell03
+            name: Cell 03
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell04
+            name: Cell 04
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell05
+            name: Cell 05
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell06
+            name: Cell 06
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell07
+            name: Cell 07
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell08
+            name: Cell 08
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell09
+            name: Cell 09
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell10
+            name: Cell 10
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell11
+            name: Cell 11
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell12
+            name: Cell 12
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell13
+            name: Cell 13
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell14
+            name: Cell 14
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell15
+            name: Cell 15
+            min: 2500
+            max: 3600
+          - type: gauge
+            entity: sensor.seplos2_364715398511_cell16
+            name: Cell 16
+            min: 2500
+            max: 3600
