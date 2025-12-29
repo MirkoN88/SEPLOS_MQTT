@@ -1,0 +1,16 @@
+2. Card grafica SOC e voltaggio in Lovelace
+Uso solo card standard.
+
+Aggiungi questa card (da Modifica dashboard → Aggiungi scheda → Configurazione manuale):
+
+
+
+type: history-graph
+title: Battery SOC & Voltage
+hours_to_show: 24
+refresh_interval: 60
+entities:
+  - entity: sensor.seplos2_364715398511_soc
+    name: SOC
+  - entity: sensor.seplos2_364715398511_total_voltage
+    name: Total Voltage
