@@ -1,0 +1,157 @@
+3. Card custom con colori dinamici per le celle
+Uso il type: gauge (nativo HA) che ha già colori dinamici con severity.
+
+Aggiungi questa sezione al view Lovelace (puoi incorporarla nella dashboard che ti ho già dato):
+
+
+
+
+- type: grid
+  title: Celle (colori dinamici)
+  columns: 4
+  square: false
+  cards:
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell01
+      name: Cell 01
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell02
+      name: Cell 02
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell03
+      name: Cell 03
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell04
+      name: Cell 04
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell05
+      name: Cell 05
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell06
+      name: Cell 06
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell07
+      name: Cell 07
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell08
+      name: Cell 08
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell09
+      name: Cell 09
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell10
+      name: Cell 10
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell11
+      name: Cell 11
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell12
+      name: Cell 12
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell13
+      name: Cell 13
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell14
+      name: Cell 14
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell15
+      name: Cell 15
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
+    - type: gauge
+      entity: sensor.seplos2_364715398511_cell16
+      name: Cell 16
+      min: 2500
+      max: 3600
+      severity:
+        green: 3000
+        yellow: 2800
+        red: 2600
