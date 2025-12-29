@@ -1,0 +1,45 @@
+4. Qualche “extra” utile che ti consiglio
+4.1. Card SOC tipo batteria
+Aggiungi questa card:
+
+
+- type: gauge
+  name: Battery SOC
+  entity: sensor.seplos2_364715398511_soc
+  min: 0
+  max: 100
+  severity:
+    green: 40
+    yellow: 20
+    red: 10
+
+
+Oppure una type: entity con icon dinamica:
+
+- type: entity
+  entity: sensor.seplos2_364715398511_soc
+  name: SOC
+  icon: mdi:battery
+
+
+4.2. Card per differenza celle (bilanciamento)
+
+- type: gauge
+  entity: sensor.seplos2_364715398511_difference
+  name: Cell difference (mV)
+  min: 0
+  max: 50
+  severity:
+    green: 10
+    yellow: 20
+    red: 30
+
+4.3. Card corrente (positivo/negativo)
+yaml
+
+
+
+- type: entity
+  entity: sensor.seplos2_364715398511_charge_discharge
+  name: Current (charge/discharge)
+
