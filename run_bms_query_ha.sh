@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # Config parameter Load
-MQTTHOST=$(grep "MQTTHOST" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-TOPIC=$(grep "TOPIC" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-MQTTUSER=$(grep "MQTTUSER" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-MQTTPASWD=$(grep "MQTTPASWD" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-TELEPERIOD=$(grep "TELEPERIOD" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-id_prefix=$(grep "id_prefix" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-MAXSIZE=$(grep "MAXSIZE" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-CELL_MIN_VOLT=$(grep "CELL_MIN_VOLT" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-CELL_MAX_VOLT=$(grep "CELL_MAX_VOLT" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+MQTTHOST=$(grep "MQTTHOST" /opt/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+TOPIC=$(grep "TOPIC" /opt/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+MQTTUSER=$(grep "MQTTUSER" /opt/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+MQTTPASWD=$(grep "MQTTPASWD" /opt/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+TELEPERIOD=$(grep "TELEPERIOD" /opt/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+id_prefix=$(grep "id_prefix" /opt/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+MAXSIZE=$(grep "MAXSIZE" /opt/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+CELL_MIN_VOLT=$(grep "CELL_MIN_VOLT" /opt/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+CELL_MAX_VOLT=$(grep "CELL_MAX_VOLT" /opt/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
 
 # The function....
 
@@ -29,9 +29,9 @@ checkcellsvoltage()
 }
 
 # The main script....
-LOGNAME=/root/share/SEPLOS_MQTT/BMS_error.log
-NOUPFILE=/root/share/SEPLOS_MQTT/nohup.out
-#cd ~/SEPLOS_MQTT/
+LOGNAME=/opt/SEPLOS_MQTT/BMS_error.log
+NOUPFILE=/opt/SEPLOS_MQTT/nohup.out
+#cd /opt/SEPLOS_MQTT/
 if [ ! -f "$LOGNAME" ]; then
 touch "$LOGNAME"
 fi
@@ -53,7 +53,7 @@ fi
     cat /dev/null > "$NOUPFILE"
   fi
 
-   QUERY=$(/root/share/SEPLOS_MQTT/query_seplos_ha.sh 4201)
+   QUERY=$(/opt/SEPLOS_MQTT/query_seplos_ha.sh 4201)
 
 # Find lowest and high value
                onlycells=$(echo $QUERY|awk '{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16}')
