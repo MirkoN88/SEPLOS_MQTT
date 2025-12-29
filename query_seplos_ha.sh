@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEV=/dev/ttyUSB1
+DEV=/dev/ttyUSB0
 ADDR=00
 
 # Get a 4 ASCII digit number and divide by $1, precision $2 ( or 2dp. ) $3 == 1 for signed.
