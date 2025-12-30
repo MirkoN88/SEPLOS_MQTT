@@ -1,0 +1,171 @@
+title: SEPLOS BMS
+views:
+  - title: Battery
+    path: seplos_bms
+    icon: mdi:battery
+    cards:
+
+      ###############################################################
+      # 1. STATO GENERALE
+      ###############################################################
+      - type: entities
+        title: Stato Generale
+        entities:
+          - entity: sensor.seplosbms_v2_state_of_charge
+            name: State of Charge (SOC)
+          - entity: sensor.seplosbms_v2_state_of_health
+            name: State of Health (SOH)
+          - entity: sensor.seplosbms_v2_cell_voltage_difference
+            name: Cell Voltage Difference (mV)
+
+      ###############################################################
+      # 2. CARD CORRENTE
+      ###############################################################
+      - type: gauge
+        entity: sensor.seplosbms_v2_charge_discharge
+        name: Current (A)
+        min: -200
+        max: 200
+        severity:
+          green: 0
+          yellow: -50
+          red: -100
+
+      ###############################################################
+      # 3. CARD VOLTAGGIO TOTALE
+      ###############################################################
+      - type: gauge
+        entity: sensor.seplosbms_v2_total_voltage
+        name: Total Voltage (V)
+        min: 40
+        max: 60
+        severity:
+          green: 52
+          yellow: 48
+          red: 45
+
+      ###############################################################
+      # 4. CARD TEMPERATURE
+      ###############################################################
+      - type: entities
+        title: Temperature Pack
+        entities:
+          - entity: sensor.seplosbms_v2_cell_temp1
+            name: Cell Temp 1
+          - entity: sensor.seplosbms_v2_cell_temp2
+            name: Cell Temp 2
+          - entity: sensor.seplosbms_v2_cell_temp3
+            name: Cell Temp 3
+          - entity: sensor.seplosbms_v2_cell_temp4
+            name: Cell Temp 4
+          - entity: sensor.seplosbms_v2_env_temp
+            name: Environment Temp
+          - entity: sensor.seplosbms_v2_power_temp
+            name: Power Temp
+
+      ###############################################################
+      # 5. GRAFICI AVANZATI
+      ###############################################################
+      - type: history-graph
+        title: SOC & Voltage (24h)
+        hours_to_show: 24
+        refresh_interval: 60
+        entities:
+          - entity: sensor.seplosbms_v2_state_of_charge
+            name: SOC
+          - entity: sensor.seplosbms_v2_total_voltage
+            name: Voltage
+
+      ###############################################################
+      # 6. BATTERY CARD STILE TESLA (senza HACS)
+      ###############################################################
+      - type: gauge
+        entity: sensor.seplosbms_v2_state_of_charge
+        name: Battery Level
+        min: 0
+        max: 100
+        severity:
+          green: 40
+          yellow: 20
+          red: 10
+
+      ###############################################################
+      # 7. PACK HEALTH
+      ###############################################################
+      - type: entities
+        title: Pack Health
+        entities:
+          - entity: sensor.seplosbms_v2_state_of_health
+            name: SOH
+          - entity: sensor.seplosbms_v2_cell_voltage_difference
+            name: Cell Balance Difference
+          - entity: sensor.seplosbms_v2_state_of_charge
+            name: SOC
+
+      ###############################################################
+      # 8. BILANCIAMENTO
+      ###############################################################
+      - type: gauge
+        entity: sensor.seplosbms_v2_cell_voltage_difference
+        name: Balancing (mV)
+        min: 0
+        max: 50
+        severity:
+          green: 10
+          yellow: 20
+          red: 30
+
+      ###############################################################
+      # 9. TEMPERATURA PACK
+      ###############################################################
+      - type: gauge
+        entity: sensor.seplosbms_v2_power_temp
+        name: Pack Temperature
+        min: 0
+        max: 60
+        severity:
+          green: 40
+          yellow: 50
+          red: 55
+
+      ###############################################################
+      # 10. GRAFICO DELLE 16 CELLE
+      ###############################################################
+      - type: history-graph
+        title: Cell Voltages (16 cells)
+        hours_to_show: 6
+        refresh_interval: 60
+        entities:
+          - sensor.seplosbms_v2_cell_01_voltage
+          - sensor.seplosbms_v2_cell_02_voltage
+          - sensor.seplosbms_v2_cell_03_voltage
+          - sensor.seplosbms_v2_cell_04_voltage
+          - sensor.seplosbms_v2_cell_05_voltage
+          - sensor.seplosbms_v2_cell_06_voltage
+          - sensor.seplosbms_v2_cell_07_voltage
+          - sensor.seplosbms_v2_cell_08_voltage
+          - sensor.seplosbms_v2_cell_09_voltage
+          - sensor.seplosbms_v2_cell_10_voltage
+          - sensor.seplosbms_v2_cell_11_voltage
+          - sensor.seplosbms_v2_cell_12_voltage
+          - sensor.seplosbms_v2_cell_13_voltage
+          - sensor.seplosbms_v2_cell_14_voltage
+          - sensor.seplosbms_v2_cell_15_voltage
+          - sensor.seplosbms_v2_cell_16_voltage
+
+      ###############################################################
+      # 11. MINI-GRAFICI PER OGNI CELLA
+      ###############################################################
+      - type: grid
+        title: Mini Grafici Celle
+        columns: 4
+        square: false
+        cards:
+          {% for i in range(1,17) %}
+          - type: sensor
+            entity: sensor.seplosbms_v2_cell_{{ "%02d"|format(i) }}_voltage
+            name: Cell {{ "%02d"|format(i) }}
+            graph: line
+            detail: 2
+            hours_to_show: 6
+          {% endfor %}
