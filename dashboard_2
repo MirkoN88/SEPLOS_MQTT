@@ -1,0 +1,171 @@
+title: SEPLOS BMS
+views:
+  - title: Battery
+    path: seplos_bms
+    icon: mdi:battery
+    cards:
+      - type: entities
+        title: Stato Generale
+        entities:
+          - entity: sensor.seplosbms_v2_state_of_charge
+            name: State of Charge
+          - entity: sensor.none_state_of_health
+            name: State of Health
+          - entity: sensor.none_cell_voltage_difference
+            name: Cell Voltage Difference
+      - type: history-graph
+        title: SOC (24h)
+        hours_to_show: 24
+        refresh_interval: 60
+        entities:
+          - entity: sensor.seplosbms_v2_state_of_charge
+            name: SOC
+      - type: grid
+        title: Celle (1–16)
+        columns: 4
+        square: false
+        cards:
+          - type: gauge
+            entity: sensor.seplosbms_v2_cell_01_voltage
+            name: Cell 01
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.seplosbms_v2_cell_02_voltage
+            name: Cell 02
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.seplosbms_v2_cell_03_voltage
+            name: Cell 03
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_04_voltage
+            name: Cell 04
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.seplosbms_v2_cell_05_voltage
+            name: Cell 05
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.seplosbms_v2_cell_06_voltage
+            name: Cell 06
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_07_voltage
+            name: Cell 07
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_08_voltage
+            name: Cell 08
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_09_voltage
+            name: Cell 09
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_10_voltage
+            name: Cell 10
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_11_voltage
+            name: Cell 11
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_12_voltage
+            name: Cell 12
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_13_voltage
+            name: Cell 13
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_14_voltage
+            name: Cell 14
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_15_voltage
+            name: Cell 15
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
+          - type: gauge
+            entity: sensor.none_cell_16_voltage
+            name: Cell 16
+            min: 2500
+            max: 3600
+            severity:
+              green: 3000
+              yellow: 2800
+              red: 2600
