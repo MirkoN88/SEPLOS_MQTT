@@ -1,0 +1,327 @@
+title: SEPLOS BMS ULTRA
+views:
+  - title: Battery Ultra
+    path: seplos_bms_ultra
+    icon: mdi:battery-high
+    cards:
+
+      ###############################################################
+      # 1. BATTERY CARD STILE TESLA (battery-state-card)
+      ###############################################################
+      - type: custom:battery-state-card
+        title: SEPLOS Battery
+        collapse: false
+        bulk_rename:
+          - from: "sensor.seplosbms_v2_"
+            to: ""
+        entities:
+          - entity: sensor.seplosbms_v2_state_of_charge
+            name: SOC
+          - entity: sensor.seplosbms_v2_total_voltage
+            name: Total Voltage
+          - entity: sensor.seplosbms_v2_state_of_health
+            name: SOH
+          - entity: sensor.seplosbms_v2_cell_voltage_difference
+            name: Cell Diff
+          - entity: sensor.seplosbms_v2_charge_discharge
+            name: Current
+          - entity: sensor.seplosbms_v2_power_temp
+            name: Pack Temp
+
+      ###############################################################
+      # 2. PACK HEALTH / RIASSUNTO
+      ###############################################################
+      - type: entities
+        title: Pack Health
+        show_header_toggle: false
+        entities:
+          - entity: sensor.seplosbms_v2_state_of_charge
+            name: State of Charge
+          - entity: sensor.seplosbms_v2_state_of_health
+            name: State of Health
+          - entity: sensor.seplosbms_v2_cell_voltage_difference
+            name: Cell Voltage Difference (mV)
+          - entity: sensor.seplosbms_v2_total_voltage
+            name: Total Voltage (V)
+          - entity: sensor.seplosbms_v2_charge_discharge
+            name: Current (A)
+
+      ###############################################################
+      # 3. CARD CORRENTE (gauge)
+      ###############################################################
+      - type: gauge
+        entity: sensor.seplosbms_v2_charge_discharge
+        name: Current (A)
+        min: -200
+        max: 200
+        severity:
+          green: 0
+          yellow: -50
+          red: -100
+
+      ###############################################################
+      # 4. CARD VOLTAGGIO TOTALE (gauge)
+      ###############################################################
+      - type: gauge
+        entity: sensor.seplosbms_v2_total_voltage
+        name: Total Voltage (V)
+        min: 40
+        max: 60
+        severity:
+          green: 52
+          yellow: 48
+          red: 45
+
+      ###############################################################
+      # 5. CARD TEMPERATURE PACK
+      ###############################################################
+      - type: entities
+        title: Temperature Pack
+        entities:
+          - entity: sensor.seplosbms_v2_cell_temp1
+            name: Cell Temp 1
+          - entity: sensor.seplosbms_v2_cell_temp2
+            name: Cell Temp 2
+          - entity: sensor.seplosbms_v2_cell_temp3
+            name: Cell Temp 3
+          - entity: sensor.seplosbms_v2_cell_temp4
+            name: Cell Temp 4
+          - entity: sensor.seplosbms_v2_env_temp
+            name: Environment Temp
+          - entity: sensor.seplosbms_v2_power_temp
+            name: Power Temp
+
+      ###############################################################
+      # 6. TEMPERATURA PACK (gauge dedicata)
+      ###############################################################
+      - type: gauge
+        entity: sensor.seplosbms_v2_power_temp
+        name: Pack Temperature (°C)
+        min: 0
+        max: 60
+        severity:
+          green: 40
+          yellow: 50
+          red: 55
+
+      ###############################################################
+      # 7. GRAFICO AVANZATO SOC + VOLTAGE (apexcharts)
+      ###############################################################
+      - type: custom:apexcharts-card
+        header:
+          title: SOC & Voltage (24h)
+          show: true
+        graph_span: 24h
+        apex_config:
+          yaxis:
+            - id: soc
+              decimalsInFloat: 1
+            - id: voltage
+              opposite: true
+              decimalsInFloat: 2
+        series:
+          - entity: sensor.seplosbms_v2_state_of_charge
+            name: SOC
+            yaxis_id: soc
+            type: line
+            stroke_width: 2
+          - entity: sensor.seplosbms_v2_total_voltage
+            name: Voltage
+            yaxis_id: voltage
+            type: line
+            stroke_width: 2
+
+      ###############################################################
+      # 8. GRAFICO AVANZATO CORRENTE (apexcharts)
+      ###############################################################
+      - type: custom:apexcharts-card
+        header:
+          title: Charge / Discharge Current (6h)
+          show: true
+        graph_span: 6h
+        span:
+          start: minute
+        series:
+          - entity: sensor.seplosbms_v2_charge_discharge
+            name: Current
+            type: line
+            stroke_width: 2
+
+      ###############################################################
+      # 9. GRAFICO 16 CELLE (apexcharts)
+      ###############################################################
+      - type: custom:apexcharts-card
+        header:
+          title: Cell Voltages (16 cells, 6h)
+          show: true
+        graph_span: 6h
+        all_series_config:
+          type: line
+          stroke_width: 1
+        series:
+          - entity: sensor.seplosbms_v2_cell_01_voltage
+            name: C01
+          - entity: sensor.seplosbms_v2_cell_02_voltage
+            name: C02
+          - entity: sensor.seplosbms_v2_cell_03_voltage
+            name: C03
+          - entity: sensor.seplosbms_v2_cell_04_voltage
+            name: C04
+          - entity: sensor.seplosbms_v2_cell_05_voltage
+            name: C05
+          - entity: sensor.seplosbms_v2_cell_06_voltage
+            name: C06
+          - entity: sensor.seplosbms_v2_cell_07_voltage
+            name: C07
+          - entity: sensor.seplosbms_v2_cell_08_voltage
+            name: C08
+          - entity: sensor.seplosbms_v2_cell_09_voltage
+            name: C09
+          - entity: sensor.seplosbms_v2_cell_10_voltage
+            name: C10
+          - entity: sensor.seplosbms_v2_cell_11_voltage
+            name: C11
+          - entity: sensor.seplosbms_v2_cell_12_voltage
+            name: C12
+          - entity: sensor.seplosbms_v2_cell_13_voltage
+            name: C13
+          - entity: sensor.seplosbms_v2_cell_14_voltage
+            name: C14
+          - entity: sensor.seplosbms_v2_cell_15_voltage
+            name: C15
+          - entity: sensor.seplosbms_v2_cell_16_voltage
+            name: C16
+
+      ###############################################################
+      # 10. BILANCIAMENTO (gauge)
+      ###############################################################
+      - type: gauge
+        entity: sensor.seplosbms_v2_cell_voltage_difference
+        name: Balancing (mV)
+        min: 0
+        max: 50
+        severity:
+          green: 10
+          yellow: 20
+          red: 30
+
+      ###############################################################
+      # 11. MINI-GRAFICI PER OGNI CELLA (mini-graph-card)
+      ###############################################################
+      - type: grid
+        title: Mini Grafici Celle (6h)
+        columns: 4
+        square: false
+        cards:
+          - type: custom:mini-graph-card
+            name: Cell 01
+            entity: sensor.seplosbms_v2_cell_01_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 02
+            entity: sensor.seplosbms_v2_cell_02_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 03
+            entity: sensor.seplosbms_v2_cell_03_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 04
+            entity: sensor.seplosbms_v2_cell_04_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 05
+            entity: sensor.seplosbms_v2_cell_05_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 06
+            entity: sensor.seplosbms_v2_cell_06_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 07
+            entity: sensor.seplosbms_v2_cell_07_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 08
+            entity: sensor.seplosbms_v2_cell_08_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 09
+            entity: sensor.seplosbms_v2_cell_09_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 10
+            entity: sensor.seplosbms_v2_cell_10_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 11
+            entity: sensor.seplosbms_v2_cell_11_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 12
+            entity: sensor.seplosbms_v2_cell_12_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 13
+            entity: sensor.seplosbms_v2_cell_13_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 14
+            entity: sensor.seplosbms_v2_cell_14_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 15
+            entity: sensor.seplosbms_v2_cell_15_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
+          - type: custom:mini-graph-card
+            name: Cell 16
+            entity: sensor.seplosbms_v2_cell_16_voltage
+            hours_to_show: 6
+            points_per_hour: 2
+            show:
+              extrema: true
