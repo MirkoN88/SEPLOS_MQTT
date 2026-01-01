@@ -3,7 +3,7 @@
 # ================================
 #  CONFIGURAZIONE
 # ================================
-CONFIG=~/SEPLOS_MQTT/config.ini
+CONFIG=/opt/SEPLOS_MQTT/config.ini
 
 MQTTHOST=$(grep "MQTTHOST" $CONFIG | awk -F "=" '{print $2}')
 TOPIC=$(grep "TOPIC" $CONFIG | awk -F "=" '{print $2}')
@@ -14,10 +14,10 @@ MAXSIZE=$(grep "MAXSIZE" $CONFIG | awk -F "=" '{print $2}')
 CELL_MIN_VOLT=$(grep "CELL_MIN_VOLT" $CONFIG | awk -F "=" '{print $2}')
 CELL_MAX_VOLT=$(grep "CELL_MAX_VOLT" $CONFIG | awk -F "=" '{print $2}')
 
-LOGNAME=~/SEPLOS_MQTT/BMS_error.log
-NOUPFILE=~/SEPLOS_MQTT/nohup.out
+LOGNAME=/opt/SEPLOS_MQTT/BMS_error.log
+NOUPFILE=/opt/SEPLOS_MQTT/nohup.out
 
-mkdir -p ~/SEPLOS_MQTT/
+mkdir -p /opt/SEPLOS_MQTT/
 
 touch "$LOGNAME"
 touch "$NOUPFILE"
@@ -55,7 +55,7 @@ while true; do
     fi
 
     # Query al BMS
-    QUERY=$(~/SEPLOS_MQTT/query_seplos_ha.sh 4201)
+    QUERY=$(/opt/SEPLOS_MQTT/query_seplos_ha.sh 4201)
 
     # Estrazione celle
     read -r CELL1 CELL2 CELL3 CELL4 CELL5 CELL6 CELL7 CELL8 CELL9 CELL10 CELL11 CELL12 CELL13 CELL14 CELL15 CELL16 \
